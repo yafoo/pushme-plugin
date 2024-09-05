@@ -1,0 +1,2 @@
+# pushme-plugin
+关于PushMeAPP及PushMeClient的一些示例插件仓库
