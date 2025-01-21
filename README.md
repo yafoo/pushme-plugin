@@ -7,3 +7,4 @@
 
 ### 插件索引
 1. [智能主题 /example/auto_theme.js](https://github.com/yafoo/pushme-plugin/tree/master/example/auto_theme.js)
+1. [原chart转echarts /example/old_chart_to_echarts.js](https://github.com/yafoo/pushme-plugin/tree/master/example/old_chart_to_echarts.js)
