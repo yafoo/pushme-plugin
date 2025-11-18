@@ -1,5 +1,5 @@
 /**
-* @name 消息分组
+* @name 智能设置分组
 * @description 根据标题或内容中包含的关键词设置消息分组
 * @param {Object} msg - 消息体
 * @param {String} msg.title - 消息标题
