@@ -1,6 +1,9 @@
 /**
+* @key official.auto_theme
 * @name 智能主题
 * @description 根据消息标题文字，自动设置主题
+* @author yafoo
+* @version 1.0.0
 * @param {Object} msg - 消息体
 * @param {String} msg.title - 消息标题
 * @param {String} msg.content - 消息内容

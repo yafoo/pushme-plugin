@@ -1,6 +1,9 @@
 /**
+* @key official.set_group_by_keys
 * @name 智能设置分组
 * @description 根据标题或内容中包含的关键词设置消息分组
+* @author yafoo
+* @version 1.0.0
 * @param {Object} msg - 消息体
 * @param {String} msg.title - 消息标题
 * @param {String} msg.content - 消息内容

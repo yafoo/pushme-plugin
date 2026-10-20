@@ -1,0 +1,40 @@
+name: Build plugin index
+
+# 每次插件源码变更就重新生成 index.json，并提交回仓库。
+# App 端只认仓库根目录的 index.json，所以这一步不能省。
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - 'plugins/**'
+      - 'example/**'
+      - 'gen-index.mjs'
+  workflow_dispatch:
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate index.json
+        run: node gen-index.mjs
+
+      - name: Commit index.json
+        run: |
+          if git diff --quiet -- index.json; then
+            echo "index.json 没有变化"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.json
+          git commit -m "chore: 更新插件索引"
+          git push

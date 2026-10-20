@@ -1,5 +1,9 @@
 /**
+ * @key official.aes_demo
  * @name AES加解密示例
+ * @description 用随机密钥对标题做一次 AES 加密再解密，演示 PMF.aes 用法
+ * @author yafoo
+ * @version 1.0.0
  * @param {Object} msg - 消息对象
  * @param {String} msg.title - 标题
  * @param {String} msg.content - 内容

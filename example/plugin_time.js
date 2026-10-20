@@ -1,5 +1,9 @@
 /**
+ * @key official.plugin_time
  * @name 插件运行时间
+ * @description 在 Toast 里显示整条插件链的耗时
+ * @author yafoo
+ * @version 1.0.0
  * @param {Object} msg - 消息对象
  * @param {String} msg.title - 标题
  * @param {String} msg.content - 内容
