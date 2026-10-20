@@ -1,5 +1,5 @@
 /**
- * @key official.rsa_demo
+ * @key pushme.rsa_demo
  * @name RSA加解密示例
  * @description 用内置公钥对标题做一次 RSA 加密再解密，演示 PMF.rsa 用法
  * @author yafoo

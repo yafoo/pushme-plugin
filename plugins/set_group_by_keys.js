@@ -1,5 +1,5 @@
 /**
-* @key official.set_group_by_keys
+* @key pushme.set_group_by_keys
 * @name 智能设置分组
 * @description 根据标题或内容中包含的关键词设置消息分组
 * @author yafoo

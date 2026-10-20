@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "updatedAt": "2026-10-20T05:08:39.653Z",
+  "updatedAt": "2026-10-20T05:22:23.150Z",
   "plugins": [
     {
-      "key": "official.aes_demo",
+      "key": "pushme.aes_demo",
       "name": "AES加解密示例",
       "description": "用随机密钥对标题做一次 AES 加密再解密，演示 PMF.aes 用法",
       "author": "yafoo",
@@ -16,12 +16,12 @@
         "PMF.aes"
       ],
       "env": [],
-      "file": "example/aes_demo.js",
-      "sha256": "87ca7760919cf7a3f152543fff9b7e11bc8f249a9a88c50154bbd4e18f94a02d",
-      "size": 735
+      "file": "plugins/aes_demo.js",
+      "sha256": "2071f771f9e53756bd14fbe47b0d894bd3300fd2e2b3f6a18411fced92976c27",
+      "size": 733
     },
     {
-      "key": "official.auto_theme",
+      "key": "pushme.auto_theme",
       "name": "智能主题",
       "description": "根据消息标题文字，自动设置主题",
       "author": "yafoo",
@@ -31,12 +31,12 @@
       "tags": [],
       "dependencies": [],
       "env": [],
-      "file": "example/auto_theme.js",
-      "sha256": "a837f9dbaf8fff56167e5a3ec203539f11f8f8d61bdd3ad22b4de58a0df5ed26",
-      "size": 969
+      "file": "plugins/auto_theme.js",
+      "sha256": "4ed1a96a28c4b659dd681174eaaa45e4b028f480f49af067458c8dfc76887b94",
+      "size": 967
     },
     {
-      "key": "official.old_chart_to_echarts",
+      "key": "pushme.old_chart_to_echarts",
       "name": "消息type转换",
       "description": "PushMe3.0将原chart消息改为echarts，如果服务端不想改，可以借助此插件进行自动转换",
       "author": "yafoo",
@@ -46,12 +46,12 @@
       "tags": [],
       "dependencies": [],
       "env": [],
-      "file": "example/old_chart_to_echarts.js",
-      "sha256": "637da9caa7e51a05a5d7876c1caf6c8bb592d3dc2b4852c02e9f9ce5c6129a41",
-      "size": 628
+      "file": "plugins/old_chart_to_echarts.js",
+      "sha256": "313e38d8b59259c054d2cdff698b06b5ec94c7d853b5027fe98bc9e93e60dc8f",
+      "size": 626
     },
     {
-      "key": "official.plugin_time",
+      "key": "pushme.plugin_time",
       "name": "插件运行时间",
       "description": "在 Toast 里显示整条插件链的耗时",
       "author": "yafoo",
@@ -63,12 +63,12 @@
         "PMF.toast"
       ],
       "env": [],
-      "file": "example/plugin_time.js",
-      "sha256": "2fbe0f1e2104785f2525c13ddfc9b5e85c18466f0eeb8f0262e2158e80be9258",
-      "size": 738
+      "file": "plugins/plugin_time.js",
+      "sha256": "11163449b5e2f6b7f2089daa18ce2f5facf0a1f86b330937760e3a01f961e32c",
+      "size": 736
     },
     {
-      "key": "official.rsa_demo",
+      "key": "pushme.rsa_demo",
       "name": "RSA加解密示例",
       "description": "用内置公钥对标题做一次 RSA 加密再解密，演示 PMF.rsa 用法",
       "author": "yafoo",
@@ -81,12 +81,12 @@
         "PMF.rsa"
       ],
       "env": [],
-      "file": "example/rsa_demo.js",
-      "sha256": "91e6e04f3bea8b2f0cef2882ef67e2abad509d31d711ac586b0981d8761a8999",
-      "size": 736
+      "file": "plugins/rsa_demo.js",
+      "sha256": "4a77899c3ee8e6b0e361580e4603d068e24c3a15316f144f7bf8f28ecb9d5307",
+      "size": 734
     },
     {
-      "key": "official.set_channel_by_keys",
+      "key": "pushme.set_channel_by_keys",
       "name": "智能设置通道",
       "description": "根据标题或内容中包含的关键词设置消息通道",
       "author": "yafoo",
@@ -96,12 +96,12 @@
       "tags": [],
       "dependencies": [],
       "env": [],
-      "file": "example/set_channel_by_keys.js",
-      "sha256": "0338af49b77533e9efb026fb68fcb311a54631862f2f4033fc410a81f3ab8327",
-      "size": 961
+      "file": "plugins/set_channel_by_keys.js",
+      "sha256": "b31bd46c401c444fa69c5afbbdc07f616dbd43d0cf6da47f40f146be1ca68917",
+      "size": 959
     },
     {
-      "key": "official.set_group_by_keys",
+      "key": "pushme.set_group_by_keys",
       "name": "智能设置分组",
       "description": "根据标题或内容中包含的关键词设置消息分组",
       "author": "yafoo",
@@ -111,9 +111,9 @@
       "tags": [],
       "dependencies": [],
       "env": [],
-      "file": "example/set_group_by_keys.js",
-      "sha256": "3a94428307b907bfbb749ca277edce40b64ad8b11e27b097db7ccef7ecf9c67d",
-      "size": 953
+      "file": "plugins/set_group_by_keys.js",
+      "sha256": "474a8c47607cbf7474c2e4a0475c34d01c271c8f48c08c22dbdac7b85e7f33c4",
+      "size": 951
     }
   ]
 }

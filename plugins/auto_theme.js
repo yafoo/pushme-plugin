@@ -1,5 +1,5 @@
 /**
-* @key official.auto_theme
+* @key pushme.auto_theme
 * @name 智能主题
 * @description 根据消息标题文字，自动设置主题
 * @author yafoo

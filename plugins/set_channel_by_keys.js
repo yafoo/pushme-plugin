@@ -1,5 +1,5 @@
 /**
-* @key official.set_channel_by_keys
+* @key pushme.set_channel_by_keys
 * @name 智能设置通道
 * @description 根据标题或内容中包含的关键词设置消息通道
 * @author yafoo

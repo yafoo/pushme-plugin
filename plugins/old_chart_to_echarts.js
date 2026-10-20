@@ -1,5 +1,5 @@
 /**
-* @key official.old_chart_to_echarts
+* @key pushme.old_chart_to_echarts
 * @name 消息type转换
 * @description PushMe3.0将原chart消息改为echarts，如果服务端不想改，可以借助此插件进行自动转换
 * @author yafoo

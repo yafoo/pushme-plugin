@@ -1,5 +1,5 @@
 /**
- * @key official.plugin_time
+ * @key pushme.plugin_time
  * @name 插件运行时间
  * @description 在 Toast 里显示整条插件链的耗时
  * @author yafoo
