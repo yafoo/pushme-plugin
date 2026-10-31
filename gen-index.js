@@ -6,8 +6,9 @@
  *   node gen-index.js
  *
  * 它做的事：
- *   1. 扫描 plugins/ 下的 *.js
- *   2. 从文件头的 JSDoc 里读 @name / @description / @author / @version / @dependencies / @env / @key
+ *   1. 扫描 plugins/ 下的 *.js（`_` 开头的文件是模板，跳过）
+ *   2. 从文件头的 JSDoc 里读 @name / @description / @author / @version / @key /
+ *      @dependencies / @env / @tags / @minAppVersion
  *   3. 算 sha256、按 @version 推 versionCode
  *   4. 和已有的 index.json 对比，做两条校验（见下）
  *   5. 写出新的 index.json，并把 README 里 <!-- plugins:start --> 区块重写成插件表格
@@ -53,6 +54,8 @@ function parseHeader(source) {
     description: pick('description'),
     author: pick('author'),
     version: pick('version'),
+    minAppVersion: pick('minAppVersion'),
+    tags: splitList(pick('tags')),
     dependencies: splitList(pick('dependencies')),
     env: splitList(pick('env')),
   }
@@ -93,6 +96,8 @@ function walk(dir) {
   if (!existsSync(full) || !statSync(full).isDirectory()) return []
   return readdirSync(full)
     .filter((f) => extname(f).toLowerCase() === '.js')
+    // `_` 开头的是模板/草稿，不参与索引（否则会在商店里冒出一个假插件）
+    .filter((f) => !f.startsWith('_'))
     .map((f) => join(dir, f))
 }
 
@@ -115,10 +120,14 @@ function updateReadme(plugins) {
     return false
   }
 
+  const cell = (list) => (list && list.length ? list.join('、') : '—')
   const rows = plugins
-    .map((p) => `| [${p.name}](./${p.file}) | ${p.description || '—'} | \`${p.version}\` |`)
+    .map(
+      (p) =>
+        `| [${p.name}](./${p.file}) | ${p.description || '—'} | ${cell(p.tags)} | ${cell(p.dependencies)} | \`${p.version}\` |`
+    )
     .join('\n')
-  const table = ['| 插件 | 说明 | 版本 |', '| --- | --- | --- |', rows].join('\n')
+  const table = ['| 插件 | 说明 | 分类 | 依赖 | 版本 |', '| --- | --- | --- | --- | --- |', rows].join('\n')
 
   const next = md.slice(0, start + README_START.length) + '\n' + table + '\n' + md.slice(end)
   if (next === md) return false
@@ -193,12 +202,14 @@ for (const file of files.sort()) {
     author: header.author,
     version: header.version,
     versionCode,
-    minAppVersion: '',
-    tags: [],
+    minAppVersion: header.minAppVersion || '',
+    tags: header.tags,
     dependencies: header.dependencies,
     env: header.env,
     file: file.split('\\').join('/'),
     sha256: hash,
+    // 注意：size 是**原始文件字节数**（只用于展示），而 sha256 算的是归一化后的内容，
+    // 两者口径不同是故意的 —— 别拿 size 去反推 hash。
     size: buffer.length,
   })
 }

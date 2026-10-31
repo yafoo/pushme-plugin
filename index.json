@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updatedAt": "2026-10-20T05:22:23.150Z",
+  "updatedAt": "2026-10-31T15:51:02.370Z",
   "plugins": [
     {
       "key": "pushme.aes_demo",
@@ -23,49 +23,201 @@
     {
       "key": "pushme.auto_theme",
       "name": "智能主题",
-      "description": "根据消息标题文字，自动设置主题",
+      "description": "根据标题关键词自动打上 失败/告警/成功/信息 主题，关键词可用环境变量覆盖",
+      "author": "yafoo",
+      "version": "1.1.0",
+      "versionCode": 10100,
+      "minAppVersion": "",
+      "tags": [
+        "主题"
+      ],
+      "dependencies": [],
+      "env": [
+        "THEME_RULES"
+      ],
+      "file": "plugins/auto_theme.js",
+      "sha256": "986a96d58a25b2637a9597e894d15a5d49da4c68de861e77ec266a8e7bf38ef2",
+      "size": 2033
+    },
+    {
+      "key": "pushme.base64_decode",
+      "name": "内容解码（base64）",
+      "description": "type 里带 base64 时把正文当 base64 解码，并把真实类型还原回去",
       "author": "yafoo",
       "version": "1.0.0",
       "versionCode": 10000,
       "minAppVersion": "",
-      "tags": [],
+      "tags": [
+        "安全"
+      ],
+      "dependencies": [
+        "PMF.base64"
+      ],
+      "env": [],
+      "file": "plugins/base64_decode.js",
+      "sha256": "a7e6f7c9d98ede91401ff67dcd2267a31a5422e06bb36672664908e3b1cb94dd",
+      "size": 1329
+    },
+    {
+      "key": "pushme.chart_from_text",
+      "name": "文本转图表",
+      "description": "把「标签 数值」的多行文本转成柱状/饼图，服务端不用改推送格式",
+      "author": "yafoo",
+      "version": "1.1.0",
+      "versionCode": 10100,
+      "minAppVersion": "",
+      "tags": [
+        "类型转换"
+      ],
+      "dependencies": [],
+      "env": [
+        "CHART_TYPE",
+        "CHART_SIZE"
+      ],
+      "file": "plugins/chart_from_text.js",
+      "sha256": "a720842cb7b1f7584d0f33f31a6731c137a08097fcb5424b2813cd0a6361e3e4",
+      "size": 2052
+    },
+    {
+      "key": "pushme.daily_checkin",
+      "name": "每日签到",
+      "description": "配合「定时任务」每天固定时间触发：自动请求签到接口；没配接口就退化成一条可点开的签到提醒",
+      "author": "yafoo",
+      "version": "1.0.0",
+      "versionCode": 10000,
+      "minAppVersion": "",
+      "tags": [
+        "定时任务"
+      ],
+      "dependencies": [
+        "PMF.fetch"
+      ],
+      "env": [
+        "CHECKIN_API",
+        "CHECKIN_METHOD",
+        "CHECKIN_BODY",
+        "CHECKIN_HEADERS",
+        "CHECKIN_KEYWORD",
+        "CHECKIN_LINK",
+        "CHECKIN_TIP",
+        "CHECKIN_TASK_KEYWORD"
+      ],
+      "file": "plugins/daily_checkin.js",
+      "sha256": "24e654d08b897ec3f79ded368edbd814c968c8490d05f260092d30a95026bcc5",
+      "size": 4294
+    },
+    {
+      "key": "pushme.group_with_face",
+      "name": "分组头像",
+      "description": "按分组名给消息挂上头像，用 [#分组!头像URL] 语法，头像会被下载缓存",
+      "author": "yafoo",
+      "version": "1.0.0",
+      "versionCode": 10000,
+      "minAppVersion": "",
+      "tags": [
+        "分组"
+      ],
+      "dependencies": [],
+      "env": [
+        "FACE_RULES"
+      ],
+      "file": "plugins/group_with_face.js",
+      "sha256": "c607800d89c280cb85f40ee3457b9c4548b72c55bd76d482c7f97c637e9d1bb0",
+      "size": 1324
+    },
+    {
+      "key": "pushme.md5_verify",
+      "name": "消息验签（md5）",
+      "description": "type 里带 md5 时校验正文签名，通过则去掉签名行，失败给标题打上失败主题",
+      "author": "yafoo",
+      "version": "1.0.0",
+      "versionCode": 10000,
+      "minAppVersion": "",
+      "tags": [
+        "安全"
+      ],
+      "dependencies": [
+        "PMF.md5"
+      ],
+      "env": [
+        "MD5_SECRET"
+      ],
+      "file": "plugins/md5_verify.js",
+      "sha256": "3edf656334528b1701423df7e0000d7f1c4f868f9afec532b4cc353f45ac1ddb",
+      "size": 2310
+    },
+    {
+      "key": "pushme.notify_to_text",
+      "name": "通知转文本",
+      "description": "把「通知监听」转发进来的消息转成普通文本，不再在消息列表里显示一大段 JSON",
+      "author": "yafoo",
+      "version": "1.0.0",
+      "versionCode": 10000,
+      "minAppVersion": "",
+      "tags": [
+        "通知"
+      ],
       "dependencies": [],
       "env": [],
-      "file": "plugins/auto_theme.js",
-      "sha256": "4ed1a96a28c4b659dd681174eaaa45e4b028f480f49af067458c8dfc76887b94",
-      "size": 967
+      "file": "plugins/notify_to_text.js",
+      "sha256": "a99004714801477432213f336589e15072c5924857038d2e48033c8dd8fe1fca",
+      "size": 1759
     },
     {
       "key": "pushme.old_chart_to_echarts",
       "name": "消息type转换",
-      "description": "PushMe3.0将原chart消息改为echarts，如果服务端不想改，可以借助此插件进行自动转换",
+      "description": "把 chart 类型改成 echarts（正文需已经是 ECharts option 的 JSON），服务端不用改推送格式",
+      "author": "yafoo",
+      "version": "1.0.1",
+      "versionCode": 10001,
+      "minAppVersion": "",
+      "tags": [
+        "类型转换"
+      ],
+      "dependencies": [],
+      "env": [],
+      "file": "plugins/old_chart_to_echarts.js",
+      "sha256": "a374625eafdaddcde00d9395eaca84de6aa5ba255a06583b6a2de14d74c38d30",
+      "size": 851
+    },
+    {
+      "key": "pushme.parking_ticket_alert",
+      "name": "交警贴条提醒",
+      "description": "短信里出现车牌号或「交警」就切到指定通道，配合该通道的语音播报 + 重复通知做到循环提醒",
       "author": "yafoo",
       "version": "1.0.0",
       "versionCode": 10000,
       "minAppVersion": "",
-      "tags": [],
+      "tags": [
+        "通知"
+      ],
       "dependencies": [],
-      "env": [],
-      "file": "plugins/old_chart_to_echarts.js",
-      "sha256": "313e38d8b59259c054d2cdff698b06b5ec94c7d853b5027fe98bc9e93e60dc8f",
-      "size": 626
+      "env": [
+        "ALERT_CHANNEL",
+        "PLATE_EXTRA"
+      ],
+      "file": "plugins/parking_ticket_alert.js",
+      "sha256": "73fdf1f0429b659fe9fac3525e375144d73a969ad080eec115d7e988a056064f",
+      "size": 2511
     },
     {
       "key": "pushme.plugin_time",
       "name": "插件运行时间",
-      "description": "在 Toast 里显示整条插件链的耗时",
+      "description": "把整条插件链的耗时附加到标题末尾，建议放在插件列表第一个",
       "author": "yafoo",
-      "version": "1.0.0",
-      "versionCode": 10000,
+      "version": "1.0.2",
+      "versionCode": 10002,
       "minAppVersion": "",
-      "tags": [],
+      "tags": [
+        "调试"
+      ],
       "dependencies": [
         "PMF.toast"
       ],
       "env": [],
       "file": "plugins/plugin_time.js",
-      "sha256": "11163449b5e2f6b7f2089daa18ce2f5facf0a1f86b330937760e3a01f961e32c",
-      "size": 736
+      "sha256": "4d984a51868f2f73f8dfb3660a110c9db3a00d3d488d0c9255797224918aaf96",
+      "size": 1612
     },
     {
       "key": "pushme.rsa_demo",
@@ -88,32 +240,116 @@
     {
       "key": "pushme.set_channel_by_keys",
       "name": "智能设置通道",
-      "description": "根据标题或内容中包含的关键词设置消息通道",
+      "description": "按环境变量里配置的关键词把消息投到指定通道，不用改代码",
       "author": "yafoo",
-      "version": "1.0.0",
-      "versionCode": 10000,
+      "version": "1.1.0",
+      "versionCode": 10100,
       "minAppVersion": "",
-      "tags": [],
+      "tags": [
+        "通道"
+      ],
       "dependencies": [],
-      "env": [],
+      "env": [
+        "CHANNEL_RULES"
+      ],
       "file": "plugins/set_channel_by_keys.js",
-      "sha256": "b31bd46c401c444fa69c5afbbdc07f616dbd43d0cf6da47f40f146be1ca68917",
-      "size": 959
+      "sha256": "6b8aa1e9fdb384343debc5fab0ebee10e33a180cadf5e2c1750d4580871244a7",
+      "size": 1673
     },
     {
       "key": "pushme.set_group_by_keys",
       "name": "智能设置分组",
-      "description": "根据标题或内容中包含的关键词设置消息分组",
+      "description": "按环境变量里配置的关键词给消息打上分组，不用改代码",
+      "author": "yafoo",
+      "version": "1.1.0",
+      "versionCode": 10100,
+      "minAppVersion": "",
+      "tags": [
+        "分组"
+      ],
+      "dependencies": [],
+      "env": [
+        "GROUP_RULES"
+      ],
+      "file": "plugins/set_group_by_keys.js",
+      "sha256": "3621e74f2b1d29591603c7543f4711a24ee780700e2b7a75b9a88876bad372ad",
+      "size": 1663
+    },
+    {
+      "key": "pushme.silent_by_keywords",
+      "name": "关键词静默",
+      "description": "命中关键词（且在设定时段内）的消息不弹通知，只安静地进 App",
       "author": "yafoo",
       "version": "1.0.0",
       "versionCode": 10000,
       "minAppVersion": "",
-      "tags": [],
+      "tags": [
+        "免打扰"
+      ],
+      "dependencies": [],
+      "env": [
+        "SILENT_KEYWORDS",
+        "SILENT_TIME"
+      ],
+      "file": "plugins/silent_by_keywords.js",
+      "sha256": "7776d76425e6041c94836bcc2e5fdc018fd4af9618d85675cd5f8456e1ef6ee1",
+      "size": 2288
+    },
+    {
+      "key": "pushme.task_to_note",
+      "name": "定时任务转待办",
+      "description": "把定时任务触发的消息转成待办清单，每行一个可勾选的待办项",
+      "author": "yafoo",
+      "version": "1.0.0",
+      "versionCode": 10000,
+      "minAppVersion": "",
+      "tags": [
+        "定时任务"
+      ],
       "dependencies": [],
       "env": [],
-      "file": "plugins/set_group_by_keys.js",
-      "sha256": "474a8c47607cbf7474c2e4a0475c34d01c271c8f48c08c22dbdac7b85e7f33c4",
-      "size": 951
+      "file": "plugins/task_to_note.js",
+      "sha256": "75773dd023f7ff26cab21c3298c2f2dd584f1a686019801611d90c3508b702cd",
+      "size": 1112
+    },
+    {
+      "key": "pushme.text_to_url",
+      "name": "纯链接转 URL",
+      "description": "正文就是一个链接时改成 url 类型，点通知直接打开浏览器",
+      "author": "yafoo",
+      "version": "1.0.0",
+      "versionCode": 10000,
+      "minAppVersion": "",
+      "tags": [
+        "类型转换"
+      ],
+      "dependencies": [],
+      "env": [],
+      "file": "plugins/text_to_url.js",
+      "sha256": "ae34aebc40afbb55a52262a6d448c4ac7691adfeefe123e229245ea4099e541f",
+      "size": 704
+    },
+    {
+      "key": "pushme.webhook_forward",
+      "name": "转发到 Webhook",
+      "description": "把每条消息 POST 到钉钉/飞书/自建接口，异步发送，不拖慢消息链路",
+      "author": "yafoo",
+      "version": "1.0.0",
+      "versionCode": 10000,
+      "minAppVersion": "",
+      "tags": [
+        "转发"
+      ],
+      "dependencies": [
+        "PMF.fetch"
+      ],
+      "env": [
+        "WEBHOOK_URL",
+        "WEBHOOK_FORMAT"
+      ],
+      "file": "plugins/webhook_forward.js",
+      "sha256": "fcb6ad704bfa8cc1605e0c9952c193bd677ff008c1a201c1bf87d177fa366d7a",
+      "size": 1799
     }
   ]
 }
