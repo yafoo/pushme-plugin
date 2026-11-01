@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updatedAt": "2026-10-31T15:51:02.370Z",
+  "updatedAt": "2026-11-01T14:53:38.484Z",
   "plugins": [
     {
       "key": "pushme.aes_demo",
@@ -183,10 +183,10 @@
     {
       "key": "pushme.parking_ticket_alert",
       "name": "交警贴条提醒",
-      "description": "短信里出现车牌号或「交警」就切到指定通道，配合该通道的语音播报 + 重复通知做到循环提醒",
+      "description": "短信里出现车牌号或「交警」就切到指定通道，并把车牌所在的那句话提取成标题",
       "author": "yafoo",
-      "version": "1.0.0",
-      "versionCode": 10000,
+      "version": "1.1.0",
+      "versionCode": 10100,
       "minAppVersion": "",
       "tags": [
         "通知"
@@ -194,11 +194,12 @@
       "dependencies": [],
       "env": [
         "ALERT_CHANNEL",
-        "PLATE_EXTRA"
+        "PLATE_EXTRA",
+        "TITLE_MAX"
       ],
       "file": "plugins/parking_ticket_alert.js",
-      "sha256": "73fdf1f0429b659fe9fac3525e375144d73a969ad080eec115d7e988a056064f",
-      "size": 2511
+      "sha256": "c9b75b2ca2aa7d8a4f362cc9017ad21d70a19182277c2ccf14091cd235a5ff55",
+      "size": 5599
     },
     {
       "key": "pushme.plugin_time",
@@ -261,8 +262,8 @@
       "name": "智能设置分组",
       "description": "按环境变量里配置的关键词给消息打上分组，不用改代码",
       "author": "yafoo",
-      "version": "1.1.0",
-      "versionCode": 10100,
+      "version": "1.1.1",
+      "versionCode": 10101,
       "minAppVersion": "",
       "tags": [
         "分组"
@@ -272,8 +273,8 @@
         "GROUP_RULES"
       ],
       "file": "plugins/set_group_by_keys.js",
-      "sha256": "3621e74f2b1d29591603c7543f4711a24ee780700e2b7a75b9a88876bad372ad",
-      "size": 1663
+      "sha256": "a49e74b73e0cd952d8469dc1b14f173707795d3b8d56fae66d4bcb6b7aeae386",
+      "size": 2068
     },
     {
       "key": "pushme.silent_by_keywords",

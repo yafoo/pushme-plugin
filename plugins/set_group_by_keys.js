@@ -3,7 +3,7 @@
  * @name 智能设置分组
  * @description 按环境变量里配置的关键词给消息打上分组，不用改代码
  * @author yafoo
- * @version 1.1.0
+ * @version 1.1.1
  * @tags 分组
  * @env GROUP_RULES
  * @param {Object} msg - 消息对象
@@ -40,6 +40,12 @@ function(msg, next) {
 
     if (!hit) return next()
 
-    msg.title = '[#' + hit.name + ']' + title
+    // 分组标记可以放任意位置，但要插在主题标记之后：
+    // 主题必须在标题最前面，插到它前面会让 App 解析不到主题，
+    // 原来那个 [w] 还会留在标题里变成一段没用的文字。
+    const themeMatch = /^\[[iswfISWF]\]/.exec(title)
+    msg.title = themeMatch
+        ? themeMatch[0] + '[#' + hit.name + ']' + title.slice(themeMatch[0].length)
+        : '[#' + hit.name + ']' + title
     next()
 }

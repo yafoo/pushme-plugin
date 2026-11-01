@@ -23,11 +23,11 @@ PushMe 官方插件仓库。App 内置的「插件商店」直接读这里的 [`
 | [消息验签（md5）](./plugins/md5_verify.js) | type 里带 md5 时校验正文签名，通过则去掉签名行，失败给标题打上失败主题 | 安全 | PMF.md5 | `1.0.0` |
 | [通知转文本](./plugins/notify_to_text.js) | 把「通知监听」转发进来的消息转成普通文本，不再在消息列表里显示一大段 JSON | 通知 | — | `1.0.0` |
 | [消息type转换](./plugins/old_chart_to_echarts.js) | 把 chart 类型改成 echarts（正文需已经是 ECharts option 的 JSON），服务端不用改推送格式 | 类型转换 | — | `1.0.1` |
-| [交警贴条提醒](./plugins/parking_ticket_alert.js) | 短信里出现车牌号或「交警」就切到指定通道，配合该通道的语音播报 + 重复通知做到循环提醒 | 通知 | — | `1.0.0` |
+| [交警贴条提醒](./plugins/parking_ticket_alert.js) | 短信里出现车牌号或「交警」就切到指定通道，并把车牌所在的那句话提取成标题 | 通知 | — | `1.1.0` |
 | [插件运行时间](./plugins/plugin_time.js) | 把整条插件链的耗时附加到标题末尾，建议放在插件列表第一个 | 调试 | PMF.toast | `1.0.2` |
 | [RSA加解密示例](./plugins/rsa_demo.js) | 用内置公钥对标题做一次 RSA 加密再解密，演示 PMF.rsa 用法 | — | PMF.toast、PMF.rsa | `1.0.0` |
 | [智能设置通道](./plugins/set_channel_by_keys.js) | 按环境变量里配置的关键词把消息投到指定通道，不用改代码 | 通道 | — | `1.1.0` |
-| [智能设置分组](./plugins/set_group_by_keys.js) | 按环境变量里配置的关键词给消息打上分组，不用改代码 | 分组 | — | `1.1.0` |
+| [智能设置分组](./plugins/set_group_by_keys.js) | 按环境变量里配置的关键词给消息打上分组，不用改代码 | 分组 | — | `1.1.1` |
 | [关键词静默](./plugins/silent_by_keywords.js) | 命中关键词（且在设定时段内）的消息不弹通知，只安静地进 App | 免打扰 | — | `1.0.0` |
 | [定时任务转待办](./plugins/task_to_note.js) | 把定时任务触发的消息转成待办清单，每行一个可勾选的待办项 | 定时任务 | — | `1.0.0` |
 | [纯链接转 URL](./plugins/text_to_url.js) | 正文就是一个链接时改成 url 类型，点通知直接打开浏览器 | 类型转换 | — | `1.0.0` |
@@ -92,6 +92,9 @@ PushMe 官方插件仓库。App 内置的「插件商店」直接读这里的 [`
 | 每日签到 | `CHECKIN_KEYWORD` / `CHECKIN_LINK` / `CHECKIN_TIP` | 判定成功的关键词（不填按 HTTP 状态码）/ 签到页地址 / 提醒文案 |
 | 每日签到 | `CHECKIN_TASK_KEYWORD` | 只接管任务名含该词的定时任务，默认「签到」 |
 | 交警贴条提醒 | `ALERT_CHANNEL` / `PLATE_EXTRA` | 通道名，默认「交警」/ 额外车牌，逗号分隔 |
+| 交警贴条提醒 | `TITLE_MAX` | 标题最多几个字，默认 `60`，填 `0` 不截断 |
+| 转发到 Webhook | `WEBHOOK_URL` / `WEBHOOK_FORMAT` | 地址 / `custom`、`dingtalk`、`feishu` |
+| 文本转图表 | `CHART_TYPE` / `CHART_SIZE` | `bar`、`pie`、`line`，留空用 `bar` / 图表尺寸，留空用 App 默认的 `10` |
 
 ## 交警贴条提醒怎么配
 
@@ -102,15 +105,17 @@ PushMe 官方插件仓库。App 内置的「插件商店」直接读这里的 [`
 2. 抽屉 →「通知通道」→ 展开「交警」→ 打开**语音通知**和**重复通知**。
    重复间隔在消息设置里（默认 30 分钟）。
 3. 打开「通知监听」，并在应用过滤里勾上短信 App —— 短信是靠监听短信应用的通知进来的。
-4. 装这个插件（建议排在插件列表第一位）。
+4. 装这个插件（建议排在插件列表第二位，紧跟「插件运行时间」）。
 
 通道名要和 `ALERT_CHANNEL` 完全一致（区分大小写），名字里别带空格和特殊字符，
 它同时也是 Android 的 channel id。
 
+**标题怎么来的**：命中之后插件把正文按 `。！？；` 切成句子，取**含车牌（或「交警」）的那一句**
+当标题，顺手剥掉 `[2条]`、`【河南省交警】` 这类前缀 —— 原来的发送号码（如 `121234103`）不再当标题。
+超长的句子按 `TITLE_MAX` 截断，完整原文仍然在正文里。
+
 插件命中条件：正文里出现**车牌号**（含新能源 8 位）或**「交警」**二字。
 想连自己的车牌一起盯，就把车牌填进 `PLATE_EXTRA`。
-| 转发到 Webhook | `WEBHOOK_URL` / `WEBHOOK_FORMAT` | 地址 / `custom`、`dingtalk`、`feishu` |
-| 文本转图表 | `CHART_TYPE` / `CHART_SIZE` | `bar`、`pie`、`line`，留空用 `bar` / 图表尺寸，留空用 App 默认的 `10` |
 
 ## 在 App 里安装
 
