@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updatedAt": "2026-11-01T14:53:38.484Z",
+  "updatedAt": "2026-11-02T10:41:23.593Z",
   "plugins": [
     {
       "key": "pushme.aes_demo",
@@ -145,6 +145,23 @@
       "file": "plugins/md5_verify.js",
       "sha256": "3edf656334528b1701423df7e0000d7f1c4f868f9afec532b4cc353f45ac1ddb",
       "size": 2310
+    },
+    {
+      "key": "pushme.notify_drop",
+      "name": "丢弃未处理通知",
+      "description": "放在插件列表最后。经过前面所有插件后仍是 notify 类型的消息（没有被通知转文本等插件接管），改成 task 让 App 丢弃，不在消息列表里留 JSON 垃圾",
+      "author": "yafoo",
+      "version": "1.0.0",
+      "versionCode": 10000,
+      "minAppVersion": "",
+      "tags": [
+        "通知"
+      ],
+      "dependencies": [],
+      "env": [],
+      "file": "plugins/notify_drop.js",
+      "sha256": "bad1cbfc14db3988164b42e1bc8ba96ecc79cb1c4d0e7649f810d2be123dbe5e",
+      "size": 1043
     },
     {
       "key": "pushme.notify_to_text",
