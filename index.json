@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updatedAt": "2026-11-02T10:41:23.593Z",
+  "updatedAt": "2026-11-08T14:34:44.911Z",
   "plugins": [
     {
       "key": "pushme.aes_demo",
@@ -312,6 +312,33 @@
       "file": "plugins/silent_by_keywords.js",
       "sha256": "7776d76425e6041c94836bcc2e5fdc018fd4af9618d85675cd5f8456e1ef6ee1",
       "size": 2288
+    },
+    {
+      "key": "pushme.site_watch",
+      "name": "网站监控",
+      "description": "配合「定时任务」定时检测一批网址，只有出现非 200（或请求失败）时才发通知，全部正常就静默",
+      "author": "yafoo",
+      "version": "1.0.0",
+      "versionCode": 10000,
+      "minAppVersion": "",
+      "tags": [
+        "定时任务"
+      ],
+      "dependencies": [
+        "PMF.fetch"
+      ],
+      "env": [
+        "WATCH_URLS",
+        "WATCH_TASK_KEYWORD",
+        "WATCH_TIMEOUT",
+        "WATCH_BODY_KEYWORD",
+        "WATCH_OK_MODE",
+        "WATCH_TITLE",
+        "WATCH_GROUP"
+      ],
+      "file": "plugins/site_watch.js",
+      "sha256": "423d47a3e093641449e257e98a001b9e8f594a444dc9012721b0d7c67b4a42e9",
+      "size": 5860
     },
     {
       "key": "pushme.task_to_note",
